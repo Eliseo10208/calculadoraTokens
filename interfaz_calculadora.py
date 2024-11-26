@@ -10,53 +10,53 @@ class CalculadoraApp:
         self.root = root
         self.root.title("Calculadora Avanzada")
         self.root.geometry("1100x800")
-        self.root.configure(bg="#2C3333")
+        self.root.configure(bg="#1E1E1E")
 
         # Marco principal
-        marco_principal = tk.Frame(self.root, bg="#2C3333")
-        marco_principal.pack(fill="both", expand=True, padx=5, pady=5)
+        marco_principal = tk.Frame(self.root, bg="#1E1E1E")
+        marco_principal.pack(fill="both", expand=True, padx=10, pady=10)
 
         # Marco calculadora
-        marco_calculadora = tk.Frame(marco_principal, bg="#395B64", padx=15, pady=15)
-        marco_calculadora.pack(side="left", fill="y", padx=5)
+        marco_calculadora = tk.Frame(marco_principal, bg="#2E2E2E", padx=20, pady=20)
+        marco_calculadora.pack(side="left", fill="y", padx=10)
 
         # Encabezado
         etiqueta_encabezado = tk.Label(
             marco_calculadora,
             text="Calculadora Avanzada",
-            font=("Roboto", 24, "bold"),
-            bg="#395B64",
-            fg="#E7F6F2",
+            font=("Roboto", 26, "bold"),
+            bg="#2E2E2E",
+            fg="#FFFFFF",
         )
-        etiqueta_encabezado.pack(pady=15)
+        etiqueta_encabezado.pack(pady=20)
 
         # Entrada de texto
         self.entrada_var = tk.StringVar()
         self.entrada_texto = tk.Entry(
             marco_calculadora,
             textvariable=self.entrada_var,
-            font=("Roboto Mono", 20),
-            width=20,
-            bg="#A5C9CA",
-            fg="#2C3333",
+            font=("Roboto Mono", 22),
+            width=22,
+            bg="#3E3E3E",
+            fg="#FFFFFF",
             bd=0,
             relief="flat",
             justify="right",
-            insertbackground="#2C3333",
+            insertbackground="#FFFFFF",
         )
-        self.entrada_texto.pack(pady=15, ipady=10)
+        self.entrada_texto.pack(pady=20, ipady=12)
 
         # Resultado
         self.resultado_var = tk.StringVar()
         etiqueta_resultado = tk.Label(
             marco_calculadora,
             textvariable=self.resultado_var,
-            font=("Roboto Mono", 28, "bold"),
-            bg="#395B64",
-            fg="#E7F6F2",
+            font=("Roboto Mono", 30, "bold"),
+            bg="#2E2E2E",
+            fg="#FFFFFF",
             height=2,
         )
-        etiqueta_resultado.pack(pady=15)
+        etiqueta_resultado.pack(pady=20)
 
         # Marco de botones
         marco_botones = tk.Frame(marco_calculadora, bg="#395B64")
@@ -70,11 +70,11 @@ class CalculadoraApp:
 
         # Botones
         botones = [
-            ("C", 0, 0, "#E7F6F2", "#2C3333"), ("(", 0, 1), (")", 0, 2), ("/", 0, 3, "#A5C9CA", "#2C3333"),
-            ("7", 1, 0), ("8", 1, 1), ("9", 1, 2), ("*", 1, 3, "#A5C9CA", "#2C3333"),
-            ("4", 2, 0), ("5", 2, 1), ("6", 2, 2), ("-", 2, 3, "#A5C9CA", "#2C3333"),
-            ("1", 3, 0), ("2", 3, 1), ("3", 3, 2), ("+", 3, 3, "#A5C9CA", "#2C3333"),
-            ("0", 4, 0, None, None, 2), (".", 4, 2), ("=", 4, 3, "#E7F6F2", "#2C3333"),
+            ("C", 0, 0, "#FF6F61", "#FFFFFF"), ("(", 0, 1), (")", 0, 2), ("/", 0, 3, "#FF6F61", "#FFFFFF"),
+            ("7", 1, 0), ("8", 1, 1), ("9", 1, 2), ("*", 1, 3, "#FF6F61", "#FFFFFF"),
+            ("4", 2, 0), ("5", 2, 1), ("6", 2, 2), ("-", 2, 3, "#FF6F61", "#FFFFFF"),
+            ("1", 3, 0), ("2", 3, 1), ("3", 3, 2), ("+", 3, 3, "#FF6F61", "#FFFFFF"),
+            ("0", 4, 0, None, None, 2), (".", 4, 2), ("=", 4, 3, "#FF6F61", "#FFFFFF"),
         ]
 
         for boton in botones:
@@ -83,23 +83,23 @@ class CalculadoraApp:
                 colspan = boton[5] if len(boton) > 5 else 1
             else:
                 texto, fila, columna = boton
-                bg_color, fg_color = "#395B64", "#E7F6F2"
+                bg_color, fg_color = "#3E3E3E", "#FFFFFF"
                 colspan = 1
 
             tk.Button(
                 marco_botones,
                 text=texto,
-                font=("Roboto", 16, "bold"),
+                font=("Roboto", 18, "bold"),
                 width=4,
-                height=1,
+                height=2,
                 bg=bg_color,
                 fg=fg_color,
                 bd=0,
                 relief="flat",
-                activebackground="#A5C9CA",
-                activeforeground="#2C3333",
+                activebackground="#FF6F61",
+                activeforeground="#FFFFFF",
                 command=lambda t=texto: self.clic_boton(t),
-            ).grid(row=fila, column=columna, columnspan=colspan, padx=3, pady=3, sticky="nsew")
+            ).grid(row=fila, column=columna, columnspan=colspan, padx=5, pady=5, sticky="nsew")
 
         # Inicializar factor de zoom
         self.zoom_factor = 0.7
@@ -231,7 +231,11 @@ class CalculadoraApp:
             font=("Roboto", 16, "bold"),
             bg="#A5C9CA",
             fg="#2C3333",
-            command=self.borrar_ultimo
+            command=self.borrar_ultimo,
+            relief="flat",
+            bd=0,
+            activebackground="#FF6F61",
+            activeforeground="#FFFFFF"
         ).pack(pady=5)
 
         # Marco para botones MS y MR juntos
@@ -244,7 +248,11 @@ class CalculadoraApp:
             font=("Roboto", 12, "bold"),
             bg="#A5C9CA",
             fg="#2C3333",
-            command=self.guardar_en_memoria
+            command=self.guardar_en_memoria,
+            relief="flat",
+            bd=0,
+            activebackground="#FF6F61",
+            activeforeground="#FFFFFF"
         ).pack(side="left", padx=2)
         
         tk.Button(
@@ -253,7 +261,11 @@ class CalculadoraApp:
             font=("Roboto", 12, "bold"),
             bg="#A5C9CA",
             fg="#2C3333",
-            command=self.recuperar_de_memoria
+            command=self.recuperar_de_memoria,
+            relief="flat",
+            bd=0,
+            activebackground="#FF6F61",
+            activeforeground="#FFFFFF"
         ).pack(side="left", padx=2)
 
     def actualizar_tabla_tokens(self):
